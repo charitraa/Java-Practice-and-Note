@@ -1,0 +1,11 @@
+1. Core Java
+2. Basic IO
+3. Control Statements
+4. Methods
+5. Collections (Array, ArrayList)
+6. File IO
+7. JDBC
+8. GUI - Swing
+9. Network Programming
+10. Integration (all in one)
+11. Assignment-2

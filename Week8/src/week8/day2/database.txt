@@ -1,0 +1,45 @@
+1. Create Person class (instance variables, ctors, setters, getters, and toString)
+
+2. Create database
+Host: "localhost"
+Database: "level4c"
+user: "root"
+password: ""
+
+3. Create table
+tbl_persons
+pid: int (11) *
+name: varchar(50)
+
+4. Insert 6 five records
+INSERT INTO tbl_persons VALUES(1, "Aanik");
+INSERT INTO tbl_persons VALUES(2, "Bibek");
+INSERT INTO tbl_persons VALUES(3, "Krishna");
+INSERT INTO tbl_persons VALUES(4, "Roman");
+INSERT INTO tbl_persons VALUES(5, "Sushant");
+INSERT INTO tbl_persons VALUES(6, "Gaurav");
+
+5. Select Records
+a. Select all records
+SELECT * FROM tbl_persons
+
+b. Search all record where pid=4
+SELECT * FROM tbl_persons WHERE pid=4
+
+6. Update/Edit record
+Update name of person to Gaurav Thapa whose pid=6
+UPDATE tbl_persons SET name='Gaurav Thapa' WHERE pid=6
+
+7. Delete Record
+Delete record where pid=6
+DELETE FROM tbl_persons WHERE pid=6
+
+
+
+
+
+
+
+
+
+

@@ -25,10 +25,9 @@ public class StudentGUI {
     JComboBox combobox, combobox1, combobox2, combobox3, combobox4, combobox5;
     Border border;
     JButton AddRegular, Presentper, grantcetr, paybills, Dropout, remove, display, clear, calculate, Back;
-    ArrayList<Student> students = new ArrayList<>();
 
     public void show() {
-
+        ArrayList<Student> students = new ArrayList<>();
         // making a new frame
         frame = new JFrame("Student management Form");
         frame.setSize(700, 820);
@@ -326,6 +325,7 @@ public class StudentGUI {
                 calculate.setBounds(220, 220, 130, 35);
                 newframe.add(calculate);
                 calculate.addActionListener(new ActionListener() {
+                    @Override
                     public void actionPerformed(ActionEvent event) {
 
                         int id = getEnrollmentID();
@@ -348,6 +348,7 @@ public class StudentGUI {
                         }
 
                     }
+
                 });
 
                 Back.setBounds(5, 10, 70, 25);
@@ -355,30 +356,6 @@ public class StudentGUI {
 
             }
         });
-        frame.setVisible(true);
-    }
-
-    // method for chrcking teh validity of unique enroolment id
-    public boolean checkEnrollmentIdUnique(int eid) {
-        for (Student obj : students) {
-            if (obj instanceof Regular) {
-                Regular r = (Regular) obj; // downcasting garne
-                if (r.getEnrollmentID() == eid) {
-                    return true;
-                }
-            }
-            if (obj instanceof Dropout) {
-                // downcasting garne
-                Dropout d = (Dropout) obj;
-
-                if (d.getEnrollmentID() == eid) {
-                    return true;
-                }
-
-            }
-            return false;
-        }
-
         // ---------------------------------------------button for drop
         // out---------------------------------------------------------------------
 
@@ -387,7 +364,9 @@ public class StudentGUI {
         panel2.add(Dropout);
         Dropout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+                for (Student dropout : students) {
+                    dropout.display();
+                }
                 int id6 = getNumOfRemainignModules();
                 if (id6 == INVALID) {
                     JOptionPane.showMessageDialog(null, "PLEASE!Enter value of Remaining module in integers",
@@ -416,26 +395,50 @@ public class StudentGUI {
                                                                                                                   // xaina
                     return;
                 }
-
-                for (Student dropout : students) {
-                    dropout.display();
-                }
-                boolean check = checkEnrollmentIdUnique(eid);
-                if (check == true) {
-                    JOptionPane.showMessageDialog(frame, "please check enrollement ID", "ID error", 0);
-                    return;
-                } else {
-                    Dropout dropstd = new Dropout(enrollid, dob, corsname, stdname, doe, tutfee, corsdurn, numremmod,
-                            Datedropout, nomonthatten);
-                    students.add(dropstd);
-                    JOptionPane.showMessageDialog(frame, "Dropout student succesfully added", "sumbit",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    return;
-                }
             }
 
-        });
+            // method for chrcking teh validity of unique enroolment id
 
+            // public boolean checkEnrollmentIdUnique(int eid) {
+            // for (Student obj : students) {
+            // if (obj instanceof Regular) {
+            // Regular r = (Regular) obj; // downcasting
+            // if (r.getEnrollmentID() == eid) {
+            // return true;
+            // }
+            // }
+            // if (obj instanceof Dropout) {
+            // Dropout d = (Dropout) obj; // downcasting
+            // if (d.getEnrollmentID() == eid) {
+            // return true;
+            // }
+            // }
+            // }
+            // return false; // Return false if enrollment ID is not found
+            // }
+
+            // // Assuming textField and combobox represent user input
+            // int enrollmentID = Integer.parseInt(textField.getText()); // Convert
+            // textField to an integer
+            // boolean check = checkEnrollmentIdUnique(enrollmentID);
+
+            // if (check) {
+            // JOptionPane.showMessageDialog(this, "Please check enrollment ID");
+            // return;
+            // } else {
+            // // Assuming combobox, combobox1, combobox2, combobox3, combobox4, and
+            // combobox5 represent different parts of a string
+            // String courseInfo = combobox.getSelectedItem() + combobox1.getSelectedItem()
+            // + combobox2.getSelectedItem();
+            // String attendanceInfo = combobox3.getSelectedItem() +
+            // combobox4.getSelectedItem() + combobox5.getSelectedItem();
+
+            // Dropout dropstd = new Dropout(enrollmentID, dob, studentName,
+            // dateOfEnrollement, tutionFee, courseDuration, numOfRemainingModules,
+            // dateOfDropout, numOfMonthsAttended);
+            // students.add(dropstd);
+            // }
+        });
         paybills = new JButton("Pay of bill");
         paybills.setBounds(490, 90, 100, 35);
         panel2.add(paybills);
@@ -692,7 +695,6 @@ public class StudentGUI {
         panel.setLayout(null);
         panel2.setLayout(null);
         frame.setVisible(true);
-        return false;
     }
 
     // getter method----------------------------------------------------------------
